@@ -17,4 +17,4 @@ Besides Nodejs, this app uses Express web framework. Express is a minimal, open 
    * The closest match will be the user with the least amount of difference.
 
 ### Demo
-![Data screenshot](https://vuduong191.github.io/FriendFinder/images/demo.gif)
+![Demo](https://vuduong191.github.io/FriendFinder/images/demo.gif)
