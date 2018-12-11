@@ -6,7 +6,7 @@ In this activity, I build a compatibility-based "FriendFinder" application -- ba
 
 Besides Nodejs, this app uses Express web framework. Express is a minimal, open source and flexible Node.js web app framework designed to make developing websites, web apps, & API’s much easier.Express helps you respond to requests with route support so that you may write responses to specific URLs
 
-**The simpole algorithm to determine the user's most compatible friend:**
+**The simple algorithm to determine the user's most compatible friend:**
 
    * Convert each user's results into a simple array of numbers (ex: `[5, 1, 4, 4, 5, 1, 2, 5, 4, 1]`).
    * With that done, compare the difference between current user's scores against those from other users, question by question. Add up the differences to calculate the `totalDifference`.
