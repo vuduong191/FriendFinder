@@ -1,0 +1,659 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <title>FriendFinder</title>
+
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <!-- Font Awesome Glyphicons -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+  <!-- Chosen -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.1/chosen.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+  <style>
+    /* Putting css in here is kindda dumb, I'll try another way in later projects*/
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      background-color: #ff854c; /* For browsers that do not support gradients */
+      background-image: linear-gradient(to bottom right, #e54481, #ff854c); /* Standard syntax (must be last) */
+      color:#fff;
+    }
+    .questionblock{
+      margin-top: 2%;
+    }
+    .radios{
+      position:relative;
+      width:60%;
+      margin:0 auto;
+      clear: both;
+    }
+    input[type="radio"]{
+      position:absolute;
+      right:1000%;
+    }
+    #submit{
+      width: 50%;
+      height:70px;
+      font-size: 3em;
+      color:#ef5472;      
+      background-color: #ffffffdc;
+      font-family: fantasy;      
+      border:none;
+      margin: auto;
+    }
+    label{
+      float:left;
+      width:10%; padding-bottom:10%;
+      margin:0 5%;
+      background:rgba(255,255,255,.2);
+      border-radius:50%;
+      cursor:pointer;
+    }
+    #slider2{
+      position:absolute;
+      left:2.2%; top:0;
+      width:6%; padding-bottom:6%;
+      margin:2.0% 0 2.5% 5%;
+      background:#fff;
+      transition:transform 1s;
+      border-radius:50%;
+      animation-timing-function: ease-in-out;
+      animation-duration:.3s;
+      animation-fill-mode: forwards;
+      transition: 0.2s left .05s ease-in-out;
+    }
+    #input12:checked  ~ #slider2{ animation-name: input1; left:2.2%; }
+    #input22:checked  ~ #slider2{ animation-name: input2; left:22.2%; }
+    #input32:checked  ~ #slider2{ animation-name: input3; left:42.2%; }
+    #input42:checked  ~ #slider2{ animation-name: input4; left:62.2%; }
+    #input52:checked  ~ #slider2{ animation-name: input5; left:82.2%; }
+    #slider3{
+      position:absolute;
+      left:2.2%; top:0;
+      width:6%; padding-bottom:6%;
+      margin:2.0% 0 2.5% 5%;
+      background:#fff;
+      transition:transform 1s;
+      border-radius:50%;
+      animation-timing-function: ease-in-out;
+      animation-duration:.3s;
+      animation-fill-mode: forwards;
+      transition: 0.2s left .05s ease-in-out;
+    }
+    #input13:checked  ~ #slider3{ animation-name: input1; left:2.2%; }
+    #input23:checked  ~ #slider3{ animation-name: input2; left:22.2%; }
+    #input33:checked  ~ #slider3{ animation-name: input3; left:42.2%; }
+    #input43:checked  ~ #slider3{ animation-name: input4; left:62.2%; }
+    #input53:checked  ~ #slider3{ animation-name: input5; left:82.2%; }
+    #slider4{
+      position:absolute;
+      left:2.2%; top:0;
+      width:6%; padding-bottom:6%;
+      margin:2.0% 0 2.5% 5%;
+      background:#fff;
+      transition:transform 1s;
+      border-radius:50%;
+      animation-timing-function: ease-in-out;
+      animation-duration:.3s;
+      animation-fill-mode: forwards;
+      transition: 0.2s left .05s ease-in-out;
+    }
+    #input14:checked  ~ #slider4{ animation-name: input1; left:2.2%; }
+    #input24:checked  ~ #slider4{ animation-name: input2; left:22.2%; }
+    #input34:checked  ~ #slider4{ animation-name: input3; left:42.2%; }
+    #input44:checked  ~ #slider4{ animation-name: input4; left:62.2%; }
+    #input54:checked  ~ #slider4{ animation-name: input5; left:82.2%; }
+    #slider5{
+      position:absolute;
+      left:2.2%; top:0;
+      width:6%; padding-bottom:6%;
+      margin:2.0% 0 2.5% 5%;
+      background:#fff;
+      transition:transform 1s;
+      border-radius:50%;
+      animation-timing-function: ease-in-out;
+      animation-duration:.3s;
+      animation-fill-mode: forwards;
+      transition: 0.2s left .05s ease-in-out;
+    }
+    #input15:checked  ~ #slider5{ animation-name: input1; left:2.2%; }
+    #input25:checked  ~ #slider5{ animation-name: input2; left:22.2%; }
+    #input35:checked  ~ #slider5{ animation-name: input3; left:42.2%; }
+    #input45:checked  ~ #slider5{ animation-name: input4; left:62.2%; }
+    #input55:checked  ~ #slider5{ animation-name: input5; left:82.2%; }
+    #slider6{
+      position:absolute;
+      left:2.2%; top:0;
+      width:6%; padding-bottom:6%;
+      margin:2.0% 0 2.5% 5%;
+      background:#fff;
+      transition:transform 1s;
+      border-radius:50%;
+      animation-timing-function: ease-in-out;
+      animation-duration:.3s;
+      animation-fill-mode: forwards;
+      transition: 0.2s left .05s ease-in-out;
+    }
+    #input16:checked  ~ #slider6{ animation-name: input1; left:2.2%; }
+    #input26:checked  ~ #slider6{ animation-name: input2; left:22.2%; }
+    #input36:checked  ~ #slider6{ animation-name: input3; left:42.2%; }
+    #input46:checked  ~ #slider6{ animation-name: input4; left:62.2%; }
+    #input56:checked  ~ #slider6{ animation-name: input5; left:82.2%; }
+    #slider7{
+      position:absolute;
+      left:2.2%; top:0;
+      width:6%; padding-bottom:6%;
+      margin:2.0% 0 2.5% 5%;
+      background:#fff;
+      transition:transform 1s;
+      border-radius:50%;
+      animation-timing-function: ease-in-out;
+      animation-duration:.3s;
+      animation-fill-mode: forwards;
+      transition: 0.2s left .05s ease-in-out;
+    }
+    #input17:checked  ~ #slider7{ animation-name: input1; left:2.2%; }
+    #input27:checked  ~ #slider7{ animation-name: input2; left:22.2%; }
+    #input37:checked  ~ #slider7{ animation-name: input3; left:42.2%; }
+    #input47:checked  ~ #slider7{ animation-name: input4; left:62.2%; }
+    #input57:checked  ~ #slider7{ animation-name: input5; left:82.2%; }
+    #slider8{
+      position:absolute;
+      left:2.2%; top:0;
+      width:6%; padding-bottom:6%;
+      margin:2.0% 0 2.5% 5%;
+      background:#fff;
+      transition:transform 1s;
+      border-radius:50%;
+      animation-timing-function: ease-in-out;
+      animation-duration:.3s;
+      animation-fill-mode: forwards;
+      transition: 0.2s left .05s ease-in-out;
+    }
+    #input18:checked  ~ #slider8{ animation-name: input1; left:2.2%; }
+    #input28:checked  ~ #slider8{ animation-name: input2; left:22.2%; }
+    #input38:checked  ~ #slider8{ animation-name: input3; left:42.2%; }
+    #input48:checked  ~ #slider8{ animation-name: input4; left:62.2%; }
+    #input58:checked  ~ #slider8{ animation-name: input5; left:82.2%; }                        
+
+    #slider9{
+      position:absolute;
+      left:2.2%; top:0;
+      width:6%; padding-bottom:6%;
+      margin:2.0% 0 2.5% 5%;
+      background:#fff;
+      transition:transform 1s;
+      border-radius:50%;
+      animation-timing-function: ease-in-out;
+      animation-duration:.3s;
+      animation-fill-mode: forwards;
+      transition: 0.2s left .05s ease-in-out;
+    }
+    #input19:checked  ~ #slider9{ animation-name: input1; left:2.2%; }
+    #input29:checked  ~ #slider9{ animation-name: input2; left:22.2%; }
+    #input39:checked  ~ #slider9{ animation-name: input3; left:42.2%; }
+    #input49:checked  ~ #slider9{ animation-name: input4; left:62.2%; }
+    #input59:checked  ~ #slider9{ animation-name: input5; left:82.2%; } 
+    #slider10{
+      position:absolute;
+      left:2.2%; top:0;
+      width:6%; padding-bottom:6%;
+      margin:2.0% 0 2.5% 5%;
+      background:#fff;
+      transition:transform 1s;
+      border-radius:50%;
+      animation-timing-function: ease-in-out;
+      animation-duration:.3s;
+      animation-fill-mode: forwards;
+      transition: 0.2s left .05s ease-in-out;
+    }
+    #input110:checked  ~ #slider10{ animation-name: input1; left:2.2%; }
+    #input210:checked  ~ #slider10{ animation-name: input2; left:22.2%; }
+    #input310:checked  ~ #slider10{ animation-name: input3; left:42.2%; }
+    #input410:checked  ~ #slider10{ animation-name: input4; left:62.2%; }
+    #input510:checked  ~ #slider10{ animation-name: input5; left:82.2%; }       
+
+        #slider{
+      position:absolute;
+      left:2.2%; top:0;
+      width:6%; padding-bottom:6%;
+      margin:2.0% 0 2.5% 5%;
+      background:#fff;
+      transition:transform 1s;
+      border-radius:50%;
+      animation-timing-function: ease-in-out;
+      animation-duration:.3s;
+      animation-fill-mode: forwards;
+      transition: 0.2s left .05s ease-in-out;
+    }
+    #input1:checked  ~ #slider{ animation-name: input1; left:2.2%; }
+    #input2:checked  ~ #slider{ animation-name: input2; left:22.2%; }
+    #input3:checked  ~ #slider{ animation-name: input3; left:42.2%; }
+    #input4:checked  ~ #slider{ animation-name: input4; left:62.2%; }
+    #input5:checked  ~ #slider{ animation-name: input5; left:82.2%; }
+
+    @keyframes input1{ 30%, 70% { transform:scale(0.5); } }
+    @keyframes input2{ 30%, 70% { transform:scale(0.5); } }
+    @keyframes input3{ 30%, 70% { transform:scale(0.5); } }
+    @keyframes input4{ 30%, 70% { transform:scale(0.5); } }
+    @keyframes input5{ 30%, 70% { transform:scale(0.5); } }
+
+    .header{
+      background-color: rgba(255, 255, 255, 0.562);      
+      background-image: url("https://swipelife.tinder.com/static/14afa25120df8e7b3591869a884f0798-9e288b3ded2d7f04d71ecb5bdd2cd66c-1388c.jpg");
+      background-blend-mode: lighten;
+      height: 260px;
+    }
+    .form-control{
+      font-family: 'Open Sans Condensed', sans-serif;
+      text-decoration: none;
+      position: relative;
+      width: 60%;
+      display: block;
+      margin: 12px auto;
+      font-size: 1em;
+      color: #752434;
+      padding: 12px;
+      border-radius: 6px;
+      border: none;
+      background: rgba(255, 255, 255, 0.801);
+      -webkit-transition: all 2s ease-in-out;
+      -moz-transition: all 2s ease-in-out;
+      -o-transition: all 2s ease-in-out;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .form-control:focus{
+      outline: none;
+      box-shadow: 3px 3px 10px #bb3c55;
+      background: #df4463;
+    }
+
+    /* Placeholders */
+      ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: pink;
+      }
+      ::placeholder { /* Chrome/Opera/Safari */
+        color: pink;
+      }       
+    .formcontainer{
+      margin-top: 6%;
+      width: 50%;
+    }
+    .modal-title{
+      font-family: fantasy;
+      font-size: 3em;
+      color:#ef5472;
+    }
+    #match-name{
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 2em;
+      color:rgb(58, 58, 58)
+    }
+    #aboutyou{
+      font-family: fantasy;
+      font-size: 3em;
+      color:#ef5472;
+      margin-left: 20%;
+    }
+    @media only screen and (max-width: 800px) {
+      #faicon {
+        display: none;
+      }
+    }    
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row header">
+      <div class="col-sm-6 formcontainer">
+        <h3 id="aboutyou"><strong>About You</strong></h3>
+        <input type="text" id="name" class="form-control" required="" placeholder="Your full name">
+        <input type="text" id="photo" class="form-control" required="" placeholder="Your photo url">
+      </div>
+      <div class="col-sm-6">
+        <img id=faicon src="http://www2.mes-coloriages-preferes.biz/colorino/Images/Large/Personnages-celebres-Troll-face-Forever-alone-151838.png" style="height:100%;">
+      </div>      
+    </div>
+
+    <div>
+    <div class="row questionblock">
+      <div class="col-md-6">
+        <h4><i class="fas fa-angle-double-right"></i> Your mind is always buzzing with unexplored ideas and plans.</h4>
+      </div>
+      <div class="col-md-6">
+        <div class="radios">
+          <label for="input1"></label>      
+          <input  id="input1" value="1" name="radio1" type="radio" />
+          <label for="input2"></label>        
+          <input  id="input2" value="2" name="radio1" type="radio" />
+          <label for="input3"></label>        
+          <input  id="input3" value="3" name="radio1" type="radio" />
+          <label for="input4"></label>        
+          <input  id="input4" value="4" name="radio1" type="radio" />
+          <label for="input5"></label>      
+          <input  id="input5" value="5" name="radio1" type="radio" />
+          <span id="slider"></span>
+        </div>  
+      </div>      
+    </div>
+    <!-- End of  the first question -->
+
+    <div class="row questionblock">
+      <div class="col-md-6">
+        <h4><i class="fas fa-angle-double-right"></i> Generally speaking, you rely more on your experience than your imagination.</h4>
+      </div>
+      <div class="col-md-6">
+        <div class="radios">
+          <label for="input12"></label>      
+          <input  id="input12" value="1" name="radio2" type="radio" />
+          <label for="input22"></label>        
+          <input  id="input22" value="2" name="radio2" type="radio" />
+          <label for="input32"></label>        
+          <input  id="input32" value="3" name="radio2" type="radio" />
+          <label for="input42"></label>        
+          <input  id="input42" value="4" name="radio2" type="radio" />
+          <label for="input52"></label>      
+          <input  id="input52" value="5" name="radio2" type="radio" />
+          <span id="slider2"></span>
+        </div>  
+      </div>      
+    </div>
+    <!-- End of  the 2nd question -->
+
+      <div class="row questionblock">
+      <div class="col-md-6">
+        <h4><i class="fas fa-angle-double-right"></i> You find it easy to stay relaxed and focused even when there is some pressure.</h4>
+      </div>
+      <div class="col-md-6">
+        <div class="radios">
+          <label for="input13"></label>      
+          <input  id="input13" value="1" name="radio3" type="radio" />
+          <label for="input23"></label>        
+          <input  id="input23" value="2" name="radio3" type="radio" />
+          <label for="input33"></label>        
+          <input  id="input33" value="3" name="radio3" type="radio" />
+          <label for="input43"></label>        
+          <input  id="input43" value="4" name="radio3" type="radio" />
+          <label for="input53"></label>      
+          <input  id="input53" value="5" name="radio3" type="radio" />
+          <span id="slider3"></span>
+        </div>  
+      </div>      
+    </div>
+    <!-- End of  the 3rd question -->
+      <div class="row questionblock">
+      <div class="col-md-6">
+        <h4><i class="fas fa-angle-double-right"></i> You rarely do something just out of sheer curiosity.</h4>
+      </div>
+      <div class="col-md-6">
+        <div class="radios">
+          <label for="input14"></label>      
+          <input  id="input14" value="1" name="radio4" type="radio" />
+          <label for="input24"></label>        
+          <input  id="input24" value="2" name="radio4" type="radio" />
+          <label for="input34"></label>        
+          <input  id="input34" value="3" name="radio4" type="radio" />
+          <label for="input44"></label>        
+          <input  id="input44" value="4" name="radio4" type="radio" />
+          <label for="input54"></label>      
+          <input  id="input54" value="5" name="radio4" type="radio" />
+          <span id="slider4"></span>
+        </div>  
+      </div>      
+    </div>
+    <!-- End of  the 4th question -->  
+      <div class="row questionblock">
+      <div class="col-md-6">
+        <h4><i class="fas fa-angle-double-right"></i> People can rarely upset you.</h4>
+      </div>
+      <div class="col-md-6">
+        <div class="radios">
+          <label for="input15"></label>      
+          <input  id="input15" value="1" name="radio5" type="radio" />
+          <label for="input25"></label>        
+          <input  id="input25" value="2" name="radio5" type="radio" />
+          <label for="input35"></label>        
+          <input  id="input35" value="3" name="radio5" type="radio" />
+          <label for="input45"></label>        
+          <input  id="input45" value="4" name="radio5" type="radio" />
+          <label for="input55"></label>      
+          <input  id="input55" value="5" name="radio5" type="radio" />
+          <span id="slider5"></span>
+        </div>  
+      </div>      
+    </div>
+    <!-- End of  the 5th question -->  
+      <div class="row questionblock">
+      <div class="col-md-6">
+        <h4><i class="fas fa-angle-double-right"></i> It is often difficult for you to relate to other people’s feelings.</h4>
+      </div>
+      <div class="col-md-6">
+        <div class="radios">
+          <label for="input16"></label>      
+          <input  id="input16" value="1" name="radio6" type="radio" />
+          <label for="input26"></label>        
+          <input  id="input26" value="2" name="radio6" type="radio" />
+          <label for="input36"></label>        
+          <input  id="input36" value="3" name="radio6" type="radio" />
+          <label for="input46"></label>        
+          <input  id="input46" value="4" name="radio6" type="radio" />
+          <label for="input56"></label>      
+          <input  id="input56" value="5" name="radio6" type="radio" />
+          <span id="slider6"></span>
+        </div>  
+      </div>      
+    </div>
+    <!-- End of  the 6th question --> 
+      <div class="row questionblock">
+      <div class="col-md-6">
+        <h4><i class="fas fa-angle-double-right"></i> In a discussion, truth should be more important than people’s sensitivities.</h4>
+      </div>
+      <div class="col-md-6">
+        <div class="radios">
+          <label for="input17"></label>      
+          <input  id="input17" value="1" name="radio7" type="radio" />
+          <label for="input27"></label>        
+          <input  id="input27" value="2" name="radio7" type="radio" />
+          <label for="input37"></label>        
+          <input  id="input37" value="3" name="radio7" type="radio" />
+          <label for="input47"></label>        
+          <input  id="input47" value="4" name="radio7" type="radio" />
+          <label for="input57"></label>      
+          <input  id="input57" value="5" name="radio7" type="radio" />
+          <span id="slider7"></span>
+        </div>  
+      </div>      
+    </div>
+    <!-- End of  the 7th question -->
+      <div class="row questionblock">
+      <div class="col-md-6">
+        <h4><i class="fas fa-angle-double-right"></i> You rarely get carried away by fantasies and ideas.</h4>
+      </div>
+      <div class="col-md-6">
+        <div class="radios">
+          <label for="input18"></label>      
+          <input  id="input18" value="1" name="radio8" type="radio" />
+          <label for="input28"></label>        
+          <input  id="input28" value="2" name="radio8" type="radio" />
+          <label for="input38"></label>        
+          <input  id="input38" value="3" name="radio8" type="radio" />
+          <label for="input48"></label>        
+          <input  id="input48" value="4" name="radio8" type="radio" />
+          <label for="input58"></label>      
+          <input  id="input58" value="5" name="radio8" type="radio" />
+          <span id="slider8"></span>
+        </div>  
+      </div>      
+    </div>
+    <!-- End of  the 8th question -->   
+      <div class="row questionblock">
+      <div class="col-md-6">
+        <h4><i class="fas fa-angle-double-right"></i> You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</h4>
+      </div>
+      <div class="col-md-6">
+        <div class="radios">
+          <label for="input19"></label>      
+          <input  id="input19" value="1" name="radio9" type="radio" />
+          <label for="input29"></label>        
+          <input  id="input29" value="2" name="radio9" type="radio" />
+          <label for="input39"></label>        
+          <input  id="input39" value="3" name="radio9" type="radio" />
+          <label for="input49"></label>        
+          <input  id="input49" value="4" name="radio9" type="radio" />
+          <label for="input59"></label>      
+          <input  id="input59" value="5" name="radio9" type="radio" />
+          <span id="slider9"></span>
+        </div>  
+      </div>      
+    </div>
+    <!-- End of  the 9th question -->
+    <div class="row questionblock">
+      <div class="col-md-6">
+        <h4><i class="fas fa-angle-double-right"></i> You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</h4>
+      </div>
+      <div class="col-md-6">
+        <div class="radios">
+          <label for="input110"></label>      
+          <input  id="input110" value="1" name="radio10" type="radio" />
+          <label for="input210"></label>        
+          <input  id="input210" value="2" name="radio10" type="radio" />
+          <label for="input310"></label>        
+          <input  id="input310" value="3" name="radio10" type="radio" />
+          <label for="input410"></label>        
+          <input  id="input410" value="4" name="radio10" type="radio" />
+          <label for="input510"></label>      
+          <input  id="input510" value="5" name="radio10" type="radio" />
+          <span id="slider10"></span>
+        </div>  
+      </div>      
+    </div>
+    <!-- End of  the 10th question -->             
+    </div>
+
+    <br>
+    <br>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>
+     Submit</button>
+
+    <hr>
+    <footer class="footer">
+      <div class="container">
+        <p><a href="/api/friends" target="blank">API Friends List</a> | <a href="https://github.com/afhaque/friendfinder" target="blank">GitHub Repo</a></p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Modal -->
+  <div id="results-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+          <h2 class="modal-title"><strong>Best Match</strong></h2>
+          <h2 id="match-name"></h2>
+          <img id="match-img" src="http://54.163.73.103/configfiles/No_Image.png" alt="">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    // Chosen CSS
+    var config = {
+      ".chosen-select": {},
+      ".chosen-select-deselect": {
+        allow_single_deselect: true
+      },
+      ".chosen-select-no-single": {
+        disable_search_threshold: 10
+      },
+      ".chosen-select-no-results": {
+        no_results_text: "Oops, nothing found!"
+      },
+      ".chosen-select-width": {
+        width: "95%"
+      }
+    };
+
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+
+    // Capture the form inputs
+    $("#submit").on("click", function(event) {
+      event.preventDefault();
+
+      // Form validation
+      function validateForm() {
+        var isValid = true;
+        $(".form-control").each(function() {
+          if ($(this).val() === "") {
+            isValid = false;
+          }
+        });
+
+        $(".chosen-select").each(function() {
+          if ($(this).val() === "") {
+            isValid = false;
+          }
+        });
+        return isValid;
+      }
+
+      // If all required fields are filled
+      if (validateForm()) {
+        // Create an object for the user"s data
+        var userData = {
+          name: $("#name").val(),
+          photo: $("#photo").val(),
+          scores: [
+            $('input[name="radio1"]:checked').val(),
+            $('input[name="radio2"]:checked').val(),
+            $('input[name="radio3"]:checked').val(),
+            $('input[name="radio4"]:checked').val(),
+            $('input[name="radio5"]:checked').val(),
+            $('input[name="radio6"]:checked').val(),
+            $('input[name="radio7"]:checked').val(),
+            $('input[name="radio8"]:checked').val(),
+            $('input[name="radio9"]:checked').val(),
+            $('input[name="radio10"]:checked').val(),
+          ]
+        };
+
+        // AJAX post the data to the friends API.
+        $.post("/api/friends", userData, function(data) {
+
+          // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+          $("#match-name").text(data.name);
+          $("#match-img").attr("src", data.photo);
+
+          // Show the modal with the best match
+          $("#results-modal").modal("toggle");
+
+        });
+      } else {
+        alert("Please fill out all fields before submitting!");
+      }
+    });
+  </script>
+
+
+
+
+</body></html>

@@ -1,0 +1,102 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <title>FriendFinder</title>
+
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <!-- Font Awesome Glyphicons -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+   <style>
+    body{
+      background-color: #ff854c; /* For browsers that do not support gradients */
+      background-image: linear-gradient(to bottom right, #e54481, #ff854c); /* Standard syntax (must be last) */
+      color:#fff;
+    }      
+    p {
+       font-family: 'Open Sans Condensed', sans-serif;
+       color:#8b244c
+    }
+    #aboutyou{
+      font-family: fantasy;
+      font-size: 3em;
+      color:#ef5472;
+      margin: auto;
+    }
+    @media only screen and (max-width: 800px) {
+      #faicon {
+        display: none;
+      }
+    }
+    #submit{
+      width: 50%;
+      font-size: 1.5em;
+      color:#ef5472;      
+      background-color: #ffffffdc;
+      font-family: fantasy;      
+      border:none;
+      margin-top: 50%;
+      margin-left: 15%;
+    }
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}    
+
+    .header{
+      background-color: rgba(255, 255, 255, 0.562);      
+      background-image: url("https://swipelife.tinder.com/static/14afa25120df8e7b3591869a884f0798-9e288b3ded2d7f04d71ecb5bdd2cd66c-1388c.jpg");
+      background-blend-mode: lighten;
+      height: 90%;
+    }
+    #header1{
+      margin-top: 10%;
+      margin-left: 10%;
+    }
+            
+   </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="row header">
+      <div class="col-sm-6">
+        <div id=header1>
+          <h3 id="aboutyou"><strong>Friend Finder</strong></h3>
+          <P> Find the friend with the greatest compatibility!</P>
+        </div> 
+        <a href="/survey"><button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>Go to Survey</button> </a>
+      </div>
+      <div class="col-sm-6">
+        <img id=faicon src="http://www2.mes-coloriages-preferes.biz/colorino/Images/Large/Personnages-celebres-Troll-face-Forever-alone-151838.png" style="height:100%;">
+      </div>      
+    </div>
+  </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/afhaque/friendfinder">GitHub Repo</a></p>
+      </div>
+    </footer>
+
+  </div>
+
+
+
+
+</body></html>
